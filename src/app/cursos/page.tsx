@@ -1,10 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
+import SharedLayout from '@/components/SharedLayout'
+import HeroSection from '@/components/HeroSection'
 import InfoSection from '@/components/InfoSection'
-import Link from 'next/link'
 
 export default function Cursos() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -29,18 +28,11 @@ export default function Cursos() {
   )
 
   return (
-    <main className="min-h-screen bg-univille-dark">
-      <Header showBackButton={true} />
-      
-      {/* Hero Section */}
-      <section className="courses-bg min-h-[60vh] flex items-center justify-center pt-16 relative">
-        <div className="stars"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-8">
-            CURSOS
-          </h1>
-        </div>
-      </section>
+    <SharedLayout showBackButton={true}>
+      <HeroSection 
+        title="CURSOS" 
+        backgroundClass="courses-bg"
+      />
 
       {/* Introduction and Search Section */}
       <section className="py-20 bg-white">
@@ -117,11 +109,7 @@ export default function Cursos() {
         </div>
       </section>
 
-      {/* Info Section */}
       <InfoSection />
-
-      {/* Footer */}
-      <Footer />
-    </main>
+    </SharedLayout>
   )
 }
