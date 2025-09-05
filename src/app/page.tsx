@@ -21,13 +21,11 @@ export default function Home() {
 
   const testimonials = [
     {
-      name: "JOSE LUIZ",
-      initials: "JL",
-      quote: "Muito show o curso eu e a ela rol. A qualidade do ensino e a infraestrutura da Univille são excepcionais. Recomendo para todos que buscam uma formação de qualidade.",
-      icon: "👨‍🎓",
-      title: "Aluno Destaque",
-      subtitle: "Reconhecimento acadêmico",
-      gradient: "from-yellow-400 to-orange-500"
+      name: "JOSÉ LUIZ",
+      course: "FORMADO EM PUBLICIDADE PELA UNIVILLE",
+      quote: "Muito show o curso eu a-do-rei.",
+      largeImage: "Foto aluno premioo.png",
+      smallImage: "Fotinho aluno.png"
     }
   ]
 

@@ -36,35 +36,54 @@ export default function CoursesPreviewSection({
             </h2>
             <p className="text-xl mb-12" style={{ color: '#005B30' }}>{subtitle}</p>
             {showLink && (
-              <Link
-                href={linkHref}
-                className="inline-flex items-center font-semibold transition-colors text-2xl px-8 py-4 border-b-2"
-                style={{ color: '#01963D', borderBottomColor: '#01963D' }}
-              >
-                {linkText}
-                <svg className="w-8 h-8 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="inline-block">
+                <Link
+                  href={linkHref}
+                  className="inline-block font-semibold transition-colors text-2xl border-b-2"
+                  style={{ color: '#01963D', borderBottomColor: '#01963D' }}
+                >
+                  {linkText}
+                </Link>
+                <svg className="w-8 h-8 ml-3 inline-block align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#01963D' }}>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </Link>
+              </div>
             )}
           </div>
 
           {/* Right side - Course images */}
-          <div className="grid grid-cols-3 gap-3">
-            {courses.map((course, index) => (
-              <div key={index} className="relative h-[500px] rounded overflow-hidden">
-                <Image
-                  src={`/images/${course.image}`}
-                  alt={course.name}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                <div className="absolute bottom-2 left-2">
-                  <h3 className="text-xl font-bold text-white">{course.name}</h3>
+          <div className="relative overflow-hidden">
+            <div className="flex gap-3">
+              {courses.slice(0, 2).map((course, index) => (
+                <div key={index} className="relative h-[600px] w-[480px] rounded overflow-hidden">
+                  <Image
+                    src={`/images/${course.image}`}
+                    alt={course.name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                  <div className="absolute bottom-2 left-2">
+                    <h3 className="text-xl font-bold text-white">{course.name}</h3>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+              {/* Third image - positioned at the right edge */}
+              {courses[2] && (
+                <div className="relative h-[600px] w-[480px] rounded overflow-hidden ml-auto">
+                  <Image
+                    src={`/images/${courses[2].image}`}
+                    alt={courses[2].name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                  <div className="absolute bottom-2 left-2">
+                    <h3 className="text-xl font-bold text-white">{courses[2].name}</h3>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
