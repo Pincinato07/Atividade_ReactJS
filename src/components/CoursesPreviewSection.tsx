@@ -24,7 +24,7 @@ export default function CoursesPreviewSection({
   linkHref = "/cursos"
 }: CoursesPreviewSectionProps) {
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="cursos" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left side - Text and button */}
@@ -38,11 +38,11 @@ export default function CoursesPreviewSection({
             {showLink && (
               <Link
                 href={linkHref}
-                className="inline-flex items-center font-semibold transition-colors text-xl"
-                style={{ color: '#01963D' }}
+                className="inline-flex items-center font-semibold transition-colors text-2xl px-8 py-4 border-b-2"
+                style={{ color: '#01963D', borderBottomColor: '#01963D' }}
               >
                 {linkText}
-                <svg className="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
@@ -52,7 +52,7 @@ export default function CoursesPreviewSection({
           {/* Right side - Course images */}
           <div className="grid grid-cols-3 gap-3">
             {courses.map((course, index) => (
-              <div key={index} className="relative h-96 rounded overflow-hidden">
+              <div key={index} className="relative h-[500px] rounded overflow-hidden">
                 <Image
                   src={`/images/${course.image}`}
                   alt={course.name}
@@ -61,7 +61,7 @@ export default function CoursesPreviewSection({
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40"></div>
                 <div className="absolute bottom-2 left-2">
-                  <h3 className="text-lg font-bold text-white">{course.name}</h3>
+                  <h3 className="text-xl font-bold text-white">{course.name}</h3>
                 </div>
               </div>
             ))}

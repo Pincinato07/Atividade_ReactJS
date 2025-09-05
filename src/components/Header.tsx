@@ -15,7 +15,7 @@ export default function Header({ showBackButton = false }: HeaderProps) {
 
   const navItems = [
     { href: '/', label: 'INICIO' },
-    { href: '/sobre', label: 'SOBRE' },
+    { href: '#sobre', label: 'SOBRE' },
     { href: '/cursos', label: 'CURSOS' },
     { href: '/contato', label: 'CONTATO' },
   ]
