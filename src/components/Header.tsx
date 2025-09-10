@@ -15,9 +15,9 @@ export default function Header({ showBackButton = false }: HeaderProps) {
 
   const navItems = [
     { href: '/', label: 'INICIO' },
-    { href: '#sobre', label: 'SOBRE' },
+    { href: '/#sobre', label: 'SOBRE' },
     { href: '/cursos', label: 'CURSOS' },
-    { href: '/contato', label: 'CONTATO' },
+    { href: '#info', label: 'CONTATO' },
   ]
 
   useEffect(() => {
@@ -38,18 +38,18 @@ export default function Header({ showBackButton = false }: HeaderProps) {
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Back Button */}
-          {showBackButton && (
-            <button className={`transition-colors ${
-              isScrolled 
-                ? 'text-gray-800 hover:text-gray-600' 
-                : 'text-white hover:text-gray-300'
-            }`}>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-          )}
+           {/* Back Button */}
+           {showBackButton && (
+             <button className={`transition-colors ${
+               isScrolled
+                 ? 'text-gray-800 hover:text-gray-600'
+                 : 'text-white hover:text-gray-300'
+             }`}>
+               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+               </svg>
+             </button>
+           )}
 
           {/* Desktop Navigation - Centered */}
           <nav className="hidden md:flex space-x-8 mx-auto">
@@ -57,7 +57,7 @@ export default function Header({ showBackButton = false }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-lg font-medium transition-colors ${
                   pathname === item.href
                     ? isScrolled
                       ? 'text-univille-green border-b-2 border-univille-green'

@@ -1,43 +1,44 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import SharedLayout from '@/components/SharedLayout'
 import HeroSection from '@/components/HeroSection'
 import InfoSection from '@/components/InfoSection'
 
 export default function Cursos() {
   const [searchTerm, setSearchTerm] = useState('')
+  const router = useRouter()
 
   const courses = [
-    { id: 1, name: 'Publicidade', image: 'bg-gradient-to-br from-blue-600 to-blue-800', icon: '🏙️', description: 'Criatividade e estratégia' },
-    { id: 2, name: 'Gastronomia', image: 'bg-gradient-to-br from-orange-500 to-red-500', icon: '🍰', description: 'Arte culinária' },
-    { id: 3, name: 'Medicina', image: 'bg-gradient-to-br from-green-600 to-green-800', icon: '🩺', description: 'Cuidar de vidas' },
-    { id: 4, name: 'Arquitetura', image: 'bg-gradient-to-br from-purple-600 to-purple-800', icon: '🏗️', description: 'Design e construção' },
-    { id: 5, name: 'Engenharia', image: 'bg-gradient-to-br from-gray-600 to-gray-800', icon: '⚙️', description: 'Inovação tecnológica' },
-    { id: 6, name: 'Direito', image: 'bg-gradient-to-br from-yellow-600 to-yellow-800', icon: '⚖️', description: 'Justiça e ética' },
-    { id: 7, name: 'Psicologia', image: 'bg-gradient-to-br from-pink-500 to-pink-700', icon: '🧠', description: 'Comportamento humano' },
-    { id: 8, name: 'Administração', image: 'bg-gradient-to-br from-indigo-600 to-indigo-800', icon: '📊', description: 'Gestão empresarial' },
-    { id: 9, name: 'Enfermagem', image: 'bg-gradient-to-br from-red-500 to-red-700', icon: '🏥', description: 'Cuidado e saúde' },
-    { id: 10, name: 'Fisioterapia', image: 'bg-gradient-to-br from-teal-500 to-teal-700', icon: '💪', description: 'Reabilitação' },
-    { id: 11, name: 'Odontologia', image: 'bg-gradient-to-br from-cyan-500 to-cyan-700', icon: '🦷', description: 'Saúde bucal' },
-    { id: 12, name: 'Veterinária', image: 'bg-gradient-to-br from-emerald-500 to-emerald-700', icon: '🐕', description: 'Cuidado animal' },
+    { id: 1, name: 'Publicidade', image: 'Foto Publicidade2.png', description: 'Criatividade e estratégia' },
+    { id: 2, name: 'Gastronomia', image: 'Foto gastronomia.png', description: 'Arte culinária' },
+    { id: 3, name: 'Medicina', image: 'Foto medicina.png', description: 'Cuidar de vidas' },
+    { id: 4, name: 'Arquitetura', image: 'Foto arquitetura.png', description: 'Design e construção' },
   ]
 
   const filteredCourses = courses.filter(course =>
     course.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
+  const handleCourseClick = (courseName: string) => {
+    if (courseName === 'Publicidade') {
+      router.push('/cursos/publicidade-e-propaganda')
+    }
+  }
+
   return (
     <SharedLayout showBackButton={true}>
       <HeroSection 
         title="CURSOS" 
         backgroundClass="courses-bg"
+        backgroundImage="Foto.png"
       />
 
-      {/* Introduction and Search Section */}
-      <section className="py-20 bg-white">
+      {/* Introduction, Search and Course Grid Section - Tudo em uma única seção */}
+      <section className="py-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-8">
               Conheça Nossos Cursos
             </h2>
@@ -63,49 +64,28 @@ export default function Cursos() {
               </div>
             </div>
 
-            <div className="max-w-4xl mx-auto">
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                A Univille oferece uma ampla gama de cursos de graduação, pós-graduação e extensão, 
-                todos reconhecidos pelo MEC com nota máxima. Nossa instituição possui mais de 40 anos 
-                de experiência em educação superior, formando profissionais qualificados para o mercado de trabalho.
-              </p>
+            <div className="max-w-4xl mx-auto mb-16">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Nossos cursos são desenvolvidos com base nas demandas do mercado, utilizando metodologias 
-                inovadoras e uma infraestrutura moderna que proporciona aos nossos alunos uma formação 
-                completa e atualizada.
+                Sed ullamcorper porttitor justo non suscipit. Nam ac diam tincidunt, hendrerit purus in, lacinia urna. Fusce a arcu non ipsum semper ultricies.Sed ullamcorper porttitor justo non suscipit. Nam ac diam tincidunt, hendrerit purus in
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Course Grid Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {filteredCourses.map((course) => (
+          {/* Courses Grid - 3x4 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {courses.concat(courses).concat(courses).map((course, index) => (
               <div
-                key={course.id}
-                className="course-card card-hover h-64 rounded-lg flex items-end p-6 cursor-pointer relative overflow-hidden"
+                key={`${course.id}-${index}`}
+                className="relative rounded overflow-hidden aspect-[3/4] cursor-pointer"
+                onClick={() => handleCourseClick(course.name)}
               >
-                <div className={`absolute inset-0 ${course.image} rounded-lg`}></div>
-                <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-                <div className="absolute top-4 right-4 text-3xl opacity-60">{course.icon}</div>
-                <div className="course-card-content relative z-10">
-                  <h3 className="text-xl font-bold text-white mb-1">{course.name}</h3>
-                  <p className="text-white opacity-90 text-sm">{course.description}</p>
+                <img src={`/images/${course.image}`} alt={course.name} className="absolute inset-0 w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-x-0 bottom-0 flex justify-center px-6 pb-6">
+                  <h3 className="text-2xl font-extrabold text-white text-center">{course.name}</h3>
                 </div>
               </div>
             ))}
           </div>
-
-          {filteredCourses.length === 0 && (
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-2xl font-bold text-gray-700 mb-2">Nenhum curso encontrado</h3>
-              <p className="text-gray-600">Tente pesquisar com outros termos.</p>
-            </div>
-          )}
         </div>
       </section>
 
